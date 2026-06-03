@@ -1,0 +1,12 @@
+click
+presidio-analyzer
+presidio-anonymizer
+pdfplumber
+reportlab
+pypdf
+spacy
+spacy[transformers]
+pdf2image
+pymupdf
+tqdm
+pyyaml

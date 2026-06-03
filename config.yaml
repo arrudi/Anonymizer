@@ -1,0 +1,94 @@
+exclusions:
+  - Provider
+  - Supplier 
+  - Customer 
+  - Contractor
+  - Services
+  - Group
+  - Party
+  - Telecommunications
+
+recognizers:
+  - recognizer_name: price_recognizer
+    supported_entity: FINANCIAL_PRICE
+    supported_language: en
+    context:
+      - price
+      - amount
+      - fee
+      - cost
+      - payment
+    patterns:
+      - name: price_pattern
+        regex: '([$€£¥]\s*\d+([.,]\d+)*)'
+        score: 0.90
+
+  - recognizer_name: contract_number_recognizer
+    supported_entity: CONTRACT_NUMBER
+    supported_language: en
+    context:
+      - contract
+      - agreement
+      - reference
+      - contract no
+      - agreement no
+    patterns:
+      - name: contract_number_pattern
+        regex: '\b(?:Contract|Agreement|SOW|Order)\s*(?:No\.?|Number|ID)?\s*[:#-]?\s*[A-Z]{2,10}[-_/]?\d{4,12}\b'
+        score: 0.85
+
+  - recognizer_name: vat_id_recognizer
+    supported_entity: VAT_ID
+    supported_language: en
+    context:
+      - vat
+      - vat id
+      - tax
+      - tax number
+    patterns:
+      - name: eu_vat_id_pattern
+        regex: '\b[A-Z]{2}[A-Z0-9]{8,12}\b'
+        score: 0.65
+
+  - recognizer_name: custom_iban_recognizer
+    supported_entity: IBAN_CODE
+    supported_language: en
+    context:
+      - iban
+      - bank account
+      - payment
+      - account number 
+    patterns:
+      - name: iban_pattern
+        regex: '\b[A-Z]{2}\d{2}(?:\s?[A-Z0-9]){11,30}\b'
+        score: 0.85
+
+  - recognizer_name: company_registration_number_recognizer
+    supported_entity: COMPANY_REGISTRATION_NUMBER
+    supported_language: en
+    context:
+      - company registration
+      - commercial register
+      - trade register
+      - registered under 
+    patterns:
+      - name: company_registration_number_pattern
+        regex: '\b(?:Company|Commercial|Trade)\s*(?:Registration|Register)?\s*(?:No\.?|Number)?\s*[:#-]?\s*[A-Z0-9\-\/]{6,20}\b'
+        score: 0.80
+
+  - recognizer_name: signature_block_recognizer
+    supported_entity: SIGNATORY_NAME
+    supported_language: en
+    context:
+      - signed by
+      - authorized by
+      - signature
+      - name
+      - title 
+    patterns:
+      - name: signed_by_pattern
+        regex: '\b(?:Signed by|Authorized by|Name)\s*[:\-]\s*[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}\b'
+        score: 0.70
+
+
+        
